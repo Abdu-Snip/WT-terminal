@@ -4,6 +4,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var indexRouter = require("./routes/index");
 var productsRouter = require("./routes/products");
 var usersRouter = require("./routes/users");
 var session = require("express-session");
@@ -20,7 +21,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/products", productsRouter);
+//app.use("/", indexRouter);
+app.use("/", productsRouter);
 app.use("/", usersRouter);
 
 // catch 404 and forward to error handler
@@ -40,7 +42,7 @@ app.use(function (err, req, res, next) {
 });
 
 mongoose
-  .connect("mongodb+srv://admin:admin123@terminal.4rvmd.mongodb.net/Terminal", {
+  .connect("mongodb+srv://admin:admin@finallab.n0yd9.mongodb.net/FinalLab", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
